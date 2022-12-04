@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+C:/Usuarios/usuario/Arduac filter=lfs diff=lfs merge=lfs -text
+C:/Usuarios/usuario/Arduac/Packages/com.ptc.vuforia.engine-10.11.3.tgz filter=lfs diff=lfs merge=lfs -text
+C:/usuarios/usuario/Arduac/Packages filter=lfs diff=lfs merge=lfs -text
