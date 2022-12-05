@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Mute()
     {
+
         if(toggle.isOn)
         {
             MusicController.Instance.Mute(true);
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         {
             MusicController.Instance.Mute(false);
         }
+
     }
 
     public void Exit()

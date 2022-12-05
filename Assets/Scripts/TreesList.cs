@@ -61,7 +61,7 @@ public class TreesList : MonoBehaviour, ITreesList
 
         Debug.Log("Longitud |" + _trees.Count+ "|");
         Debug.Log("Buscando |" + name + "|");
-        GameObject treeAux = new GameObject();
+        GameObject treeAux = null;
 
         foreach(GameObject tree in _trees)
         {
@@ -80,10 +80,10 @@ public class TreesList : MonoBehaviour, ITreesList
         }
 
         GameObject newTree = Instantiate(treeAux);
+        newTree.name = treeAux.name;
         newTree.transform.SetParent(parent.transform);
-        newTree.name = name;
-        _trees.Add(newTree);
 
+        _trees.Add(newTree);
         return newTree;
 
     }
