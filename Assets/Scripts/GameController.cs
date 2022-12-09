@@ -6,19 +6,15 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     
-    [SerializeField] private GameObject _arduac;
     [SerializeField] private TextMeshProUGUI _countTreesText;
     [SerializeField] private GameObject treeParent;
     private int _countTrees;
-    Vector3 aux1 = new Vector3();
 
     private WaitForSeconds _waitForFive;
 
     private void Awake()
     {
-        
         Initialization();
-        
     }
 
     private void Initialization()
@@ -31,7 +27,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        //Vector3 aux1 = new Vector3();
+        
         if(Input.GetMouseButtonDown(0))
         {
 
@@ -51,7 +47,7 @@ public class GameController : MonoBehaviour
                     {
                         return;
                     }
-                    GameObject tree =  TreesList.Instance.GetTree(Random.Range(0, 6), treeParent);
+                    GameObject tree = TreesList.Instance.GetTree(Random.Range(0, 6), treeParent);
 
                     tree.transform.position = hit.point;
                     tree.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
@@ -72,17 +68,22 @@ public class GameController : MonoBehaviour
 
     }
 
+    //Espera 5 segundos i luego el árbol colocada desaparece
     IEnumerator WaitTree(GameObject tree)
     {
+
         yield return _waitForFive;
         tree.SetActive(false);
+
     }
 
+    //Reanuda la música si se encuentra el target
     public void OnEnterTarget()
     {
         MusicController.Instance.UnpauseMusic();
     }
 
+    //Pausa la música si se pierde el target
     public void OnExitTarget()
     {
         MusicController.Instance.PauseMusic();

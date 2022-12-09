@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicController : MonoBehaviour
 {
     public static MusicController Instance;
     [SerializeField] private AudioSource _audioSourceMusic;
     [SerializeField] private AudioSource _audioSourceFx; 
+    [SerializeField] private AudioMixer _mixer;
     [SerializeField] private List<AudioClip> _clips;
 
     private void Awake()
     {
-        
         Initialization();
-
     }
 
     private void Initialization()
@@ -36,29 +36,34 @@ public class MusicController : MonoBehaviour
         
     }
 
+    //Sonido árbol
     public void TreeFx()
     {
         _audioSourceFx.Play();
     }
 
+    //la música deja de estar pausada
     public void UnpauseMusic()
     {
         _audioSourceMusic.UnPause();
     }
 
+    //Pausa la música
     public void PauseMusic()
     {
         _audioSourceMusic.Pause();
     }
 
+    //Mutea la música
     public void Mute(bool mute)
     {
+        _mixer.SetFloat("MixerVolumen", mute ? -80 : -15);
+    }
 
-        float volumen = mute ? 0 : 0.5f;
-
-        this._audioSourceFx.volume = volumen;
-        this._audioSourceMusic.volume = volumen;
-        
+    //Efecto low pass para el menu de pausa
+    public void LowPassFilter(bool active)
+    {
+        _mixer.SetFloat("LowPass", active ? 1000 : 10000);
     }
 
 }

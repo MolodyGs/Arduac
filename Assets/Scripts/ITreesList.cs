@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface ITreesList
 {
-
     public GameObject GetTree(int treeId, GameObject parent);
-
 }
